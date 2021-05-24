@@ -7,7 +7,6 @@ const app = express()
 
 // storage
 const static = path.resolve(__dirname, "public")
-let items = []
 
 // Middleware
 app.set("view engine", "pug")
@@ -40,7 +39,6 @@ app.get("/", (req, res) => {
 app.post("/", (req, res) => {
     // store on variable
     let i = req.body.item;
-    items.push(i)
     // // store on database
     let itm = new collection({
         name: i
@@ -52,6 +50,18 @@ app.post("/", (req, res) => {
 })
 
 //  delete /
+app.post("/delete", (req, res) => {
+    // send value
+    let del = req.body.checkbox
+    collection.deleteOne({ _id: del }, (err) => {
+        if (err) { console.log(err) } else {
+            console.log('Deleted successfull X')
+        }
+        res.redirect("/")
+    })
+
+})
+
 
 app.listen(3000, () => {
     console.log('listening...')

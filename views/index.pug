@@ -8,9 +8,9 @@ html
 		.container
 			//- todo list : items from express_pug
 			each val in items 
-				.row
+				form.row(action="/delete",method="POST")
+					input(type="checkbox",name="checkbox",value=val._id,onchange="this.form.submit()")
 					.item.u-full-width= val.name
-						button.delete(type="") X
 			//- form
 			.row
 				six.columns
