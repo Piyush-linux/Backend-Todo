@@ -9,7 +9,8 @@ html
 			//- todo list : items from express_pug
 			each val in items 
 				.row
-					.item.u-full-width= val
+					.item.u-full-width= val.name
+						button.delete(type="") X
 			//- form
 			.row
 				six.columns
